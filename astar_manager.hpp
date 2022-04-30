@@ -3,11 +3,30 @@
 
 #include "logger.hpp"
 
-class AStar_Manager {
+#include "map_manager.hpp"
+
+#include <vector>
+
+class coord {
 public:
-	AStar_Manager(Logger* inLogger);
+	coord();
+	coord(int inX, int inY);
+	int x, y;
+};
+
+class AStarManager {
+public:
+	AStarManager(Logger* inLogger, MapManager* inMapManager);
+	void setStart(int inXGrid, int inYGrid);
+	void setEnd(int inXGrid, int inYGrid);
+	void RunAStar();
+
+	std::vector<coord> myPath;
+	coord myStart, myEnd;
+	bool hasStart, hasEnd, hasPath;
 private:
 	Logger* myLogger;
+	MapManager* myMapManager;
 };
 
 #endif

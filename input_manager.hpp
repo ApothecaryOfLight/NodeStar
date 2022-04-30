@@ -3,15 +3,21 @@
 
 #include "logger.hpp"
 
+#include "map_manager.hpp"
+#include "astar_manager.hpp"
+
 #include <SDL.h>
 
-class Input_Manager {
+class InputManager {
 public:
-	Input_Manager(Logger* inLogger);
+	InputManager(Logger* inLogger, MapManager* inMapManager, AStarManager* inAStarManager);
 	void processInput(SDL_Event* inEvent);
 	bool isQuit;
 private:
 	Logger* myLogger;
+	MapManager* myMapManager;
+	AStarManager* myAStarManager;
+	int MousePosX, MousePosY;
 };
 
 #endif

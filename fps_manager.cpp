@@ -1,15 +1,15 @@
 #include "fps_manager.hpp"
 
-FPS_Manager::FPS_Manager() {
+FPSManager::FPSManager() {
 	isStarted = false;
 	myStartTicks = 0;
 }
 
-void FPS_Manager::doStart() {
+void FPSManager::doStart() {
 	myStartTicks = SDL_GetTicks();
 	isStarted = true;
 }
 
-Uint32 FPS_Manager::getTicks() {
+Uint32 FPSManager::getTicks() {
 	return (Uint32)(SDL_GetTicks() - myStartTicks);
 }

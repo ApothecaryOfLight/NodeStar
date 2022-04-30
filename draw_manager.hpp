@@ -3,11 +3,26 @@
 
 #include "logger.hpp"
 
-class Draw_Manager {
+#include <SDL.h>
+
+#include "map_manager.hpp"
+#include "astar_manager.hpp"
+
+class DrawManager {
 public:
-	Draw_Manager(Logger* inLogger);
+	DrawManager(Logger* inLogger, MapManager* inMapManager, AStarManager* inAStarManager, SDL_Renderer* inRenderer);
+	~DrawManager();
+	void doLoadImages();
+	void doDraw();
+	void doDrawTerrain();
+	void doDrawEndpoints();
+	void doDrawPath();
 private:
 	Logger* myLogger;
+	MapManager* myMapManager;
+	AStarManager* myAStarManager;
+	SDL_Renderer* myRenderer;
+	SDL_Texture* mySpriteAtlas;
 };
 
 #endif

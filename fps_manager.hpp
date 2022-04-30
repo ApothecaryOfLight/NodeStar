@@ -3,9 +3,9 @@
 
 #include <SDL.h>
 
-class FPS_Manager {
+class FPSManager {
 public:
-	FPS_Manager();
+	FPSManager();
 	void doStart();
 	Uint32 getTicks();
 	bool isStarted;
