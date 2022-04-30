@@ -3,6 +3,7 @@
 
 #include "logger.hpp"
 
+#include "fps_manager.hpp"
 #include "type_node.hpp"
 #include "draw_manager.hpp"
 #include "astar_manager.hpp"
@@ -64,9 +65,11 @@ int main(int argc, char *argv[]) {
 	mySrc.w = 32;
 	mySrc.h = 32;
 
+	FPS_Manager* myFPS_Manager = new FPS_Manager;
 
 	//Draw loop
 	while (!myInputManager->isQuit) {
+		myFPS_Manager->doStart();
 		myInputManager->processInput(&mySDLEvent);
 		SDL_RenderClear(myRenderer);
 		SDL_RenderCopy(
@@ -76,6 +79,11 @@ int main(int argc, char *argv[]) {
 			&mySrc
 		);
 		SDL_RenderPresent(myRenderer);
+
+		int frameTicks = myFPS_Manager->getTicks();
+		if (frameTicks < 42) {
+			SDL_Delay(42 - frameTicks);
+		}
 	}
 
 
