@@ -1,5 +1,5 @@
 #ifndef _ASTAR_MANAGER_
-#define
+#define _ASTAR_MANAGER_
 
 class astar_manager {
 public:

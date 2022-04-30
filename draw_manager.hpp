@@ -1,9 +1,8 @@
 #ifndef _DRAW_MANAGER_
-#define
+#define _DRAW_MANAGER_
 
 class draw_manager {
 
 };
 
-#endif
 #endif

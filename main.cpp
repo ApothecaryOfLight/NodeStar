@@ -6,8 +6,6 @@
 #include "mouse_manager.hpp"
 #include "type_node.hpp"
 
-#undef main
-
 int main(int argc, char *argv[]) {
 	Logger* myLogger = new Logger;
 	myLogger->log( "Initialized!" );

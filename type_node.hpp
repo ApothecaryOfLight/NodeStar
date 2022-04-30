@@ -1,5 +1,5 @@
 #ifndef _TYPE_NODE_
-#define
+#define _TYPE_NODE_
 
 class node {
 
