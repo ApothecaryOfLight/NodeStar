@@ -3,7 +3,7 @@
 node::node(int inTerrainType, bool inIsPassable, int inDrawX, int inDrawY) {
 	TerrainType = inTerrainType;
 	isPassable = inIsPassable;
-	distance = 0;
+	distance = -1;
 	DrawX = inDrawX;
 	DrawY = inDrawY;
 }

@@ -11,6 +11,7 @@ public:
 	int distance;
 	bool isPassable;
 	int DrawX, DrawY;
+	int cartesianGridX, cartesianGridY;
 	std::vector<node*> myConnectedNodes;
 };
 

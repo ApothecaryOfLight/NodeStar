@@ -6,6 +6,7 @@
 #include "map_manager.hpp"
 
 #include <vector>
+#include <deque>
 
 class coord {
 public:
@@ -19,14 +20,19 @@ public:
 	AStarManager(Logger* inLogger, MapManager* inMapManager);
 	void setStart(int inXGrid, int inYGrid);
 	void setEnd(int inXGrid, int inYGrid);
-	void RunAStar();
+	void resetDistances();
 
-	std::vector<coord> myPath;
+	bool SetAdjacentDistances(node* inThisNode, std::deque<node*> *inNextNodes);
+	void RunAStar();
+	void createPath(node *inNode);
+
+	std::vector<node*> myPath;
 	coord myStart, myEnd;
 	bool hasStart, hasEnd, hasPath;
 private:
 	Logger* myLogger;
 	MapManager* myMapManager;
+	node *startNode, *endNode;
 };
 
 #endif

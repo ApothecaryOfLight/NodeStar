@@ -39,7 +39,9 @@ void DrawManager::doDraw() {
 
 	doDrawTerrain();
 	doDrawEndpoints();
-	doDrawPath();
+	if (myAStarManager->hasPath) {
+		doDrawPath();
+	}
 
 	SDL_RenderPresent(myRenderer);
 }
@@ -70,6 +72,20 @@ void DrawManager::doDrawTerrain() {
 			&mySrc,
 			&myDst
 		);
+
+		if ((*myIter)->distance != -1) {
+			SDL_Rect mySrc;
+			mySrc.x = 32 * (*myIter)->distance;
+			mySrc.y = 64;
+			mySrc.w = 32;
+			mySrc.h = 32;
+			SDL_RenderCopy(
+				myRenderer,
+				mySpriteAtlas,
+				&mySrc,
+				&myDst
+			);
+		}
 
 		++myIter;
 	}
@@ -119,5 +135,27 @@ void DrawManager::doDrawEndpoints() {
 }
 
 void DrawManager::doDrawPath() {
+	std::vector<node*>::iterator myIter = myAStarManager->myPath.begin(), myEnd = myAStarManager->myPath.end();
+	while (myIter != myEnd) {
+		SDL_Rect mySrc;
+		mySrc.x = 64;
+		mySrc.y = 32;
+		mySrc.w = 32;
+		mySrc.h = 32;
 
+		SDL_Rect myDst;
+		myDst.x = (*myIter)->DrawX;
+		myDst.y = (*myIter)->DrawY;
+		myDst.w = 32;
+		myDst.h = 32;
+
+		SDL_RenderCopy(
+			myRenderer,
+			mySpriteAtlas,
+			&mySrc,
+			&myDst
+		);
+
+		++myIter;
+	}
 }
