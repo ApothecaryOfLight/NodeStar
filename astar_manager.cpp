@@ -65,7 +65,6 @@ void AStarManager::resetDistances() {
 bool AStarManager::SetAdjacentDistances(node* inThisNode, std::deque<node*> *inNextNodes) {
 	std::vector<node*>::iterator myIter = inThisNode->myConnectedNodes.begin();
 	std::vector<node*>::iterator myEnd = inThisNode->myConnectedNodes.end();
-	//myLogger->log("setting adjacent distances");
 	while (myIter != myEnd) {
 		if ((*myIter)->distance == -1) {
 			(*myIter)->distance = inThisNode->distance + 1;
@@ -77,18 +76,14 @@ bool AStarManager::SetAdjacentDistances(node* inThisNode, std::deque<node*> *inN
 		++myIter;
 	}
 	return false;
-	//myLogger->log("set adjacent distances");
 }
 
 void AStarManager::RunAStar() {
 	std::deque<node*> next_nodes;
 	startNode->distance = 0;
 	next_nodes.push_back(startNode);
-
-	myLogger->log("running a star");
 	while (!next_nodes.empty()) {
 		if( SetAdjacentDistances(next_nodes.front(), &next_nodes) ) {
-			myLogger->log("found path");
 			myPath.clear();
 			createPath(endNode);
 			hasPath = true;
@@ -99,16 +94,12 @@ void AStarManager::RunAStar() {
 }
 
 void AStarManager::createPath(node *inNode) {
-	myLogger->log(inNode->cartesianGridX);
-	myLogger->log(inNode->cartesianGridY);
-	myLogger->log((int)inNode->myConnectedNodes.size());
 	myPath.push_back(inNode);
 	std::vector<node*>::iterator myIter = inNode->myConnectedNodes.begin();
 	std::vector<node*>::iterator myEnd = inNode->myConnectedNodes.end();
 	while (myIter != myEnd) {
 		if ((*myIter)->distance != -1) {
 			if ((*myIter)->distance < inNode->distance) {
-				myLogger->log("Adding node to path.");
 				createPath((*myIter));
 				break;
 			}
