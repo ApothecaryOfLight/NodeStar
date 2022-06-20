@@ -6,6 +6,8 @@ node::node(int inTerrainType, bool inIsPassable, int inDrawX, int inDrawY) {
 	distance = -1;
 	DrawX = inDrawX;
 	DrawY = inDrawY;
+	cartesianGridX = -1;
+	cartesianGridY = -1;
 }
 
 void node::addConnectedNode(node* inNode) {

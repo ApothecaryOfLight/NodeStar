@@ -8,6 +8,7 @@
 #include "type_node.hpp"
 
 #include "map_manager.hpp"
+#include "map_file_manager.hpp"
 #include "draw_manager.hpp"
 #include "astar_manager.hpp"
 #include "input_manager.hpp"
@@ -44,6 +45,7 @@ int main(int argc, char *argv[]) {
 
 	//Create classes
 	MapManager* myMapManager = new MapManager(myLogger);
+	MapFileManager* myMapFileManager = new MapFileManager(myLogger, myMapManager);
 	AStarManager* myAStarManager = new AStarManager(myLogger, myMapManager);
 	DrawManager* myDrawManager = new DrawManager(myLogger, myMapManager, myAStarManager, myRenderer);
 	InputManager* myInputManager = new InputManager(myLogger, myMapManager, myAStarManager);
@@ -68,11 +70,13 @@ int main(int argc, char *argv[]) {
 		}
 	}
 
+	myMapFileManager->SaveMap("default_map.txt");
 
 	//Cleanup classes
 	delete myInputManager;
 	delete myDrawManager;
 	delete myAStarManager;
+	delete myMapFileManager;
 	delete myMapManager;
 
 
