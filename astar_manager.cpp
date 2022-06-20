@@ -62,12 +62,12 @@ void AStarManager::resetDistances() {
 	}
 }
 
-bool AStarManager::SetAdjacentDistances(node* inThisNode, std::deque<node*> *inNextNodes) {
-	std::vector<node*>::iterator myIter = inThisNode->myConnectedNodes.begin();
-	std::vector<node*>::iterator myEnd = inThisNode->myConnectedNodes.end();
+bool AStarManager::SetAdjacentDistances(std::deque<node*> *inNextNodes) {
+	std::vector<node*>::iterator myIter = inNextNodes->front()->myConnectedNodes.begin();
+	std::vector<node*>::iterator myEnd = inNextNodes->front()->myConnectedNodes.end();
 	while (myIter != myEnd) {
 		if ((*myIter)->distance == -1) {
-			(*myIter)->distance = inThisNode->distance + 1;
+			(*myIter)->distance = inNextNodes->front()->distance + 1;
 			if ((*myIter) == endNode) {
 				return true;
 			}
@@ -83,7 +83,7 @@ void AStarManager::RunAStar() {
 	startNode->distance = 0;
 	next_nodes.push_back(startNode);
 	while (!next_nodes.empty()) {
-		if( SetAdjacentDistances(next_nodes.front(), &next_nodes) ) {
+		if( SetAdjacentDistances(&next_nodes) ) {
 			myPath.clear();
 			createPath(endNode);
 			hasPath = true;

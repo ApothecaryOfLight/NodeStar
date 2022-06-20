@@ -22,7 +22,7 @@ public:
 	void setEnd(int inXGrid, int inYGrid);
 	void resetDistances();
 
-	bool SetAdjacentDistances(node* inThisNode, std::deque<node*> *inNextNodes);
+	bool SetAdjacentDistances(std::deque<node*> *inNextNodes);
 	void RunAStar();
 	void createPath(node *inNode);
 
